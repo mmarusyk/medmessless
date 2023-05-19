@@ -28,3 +28,4 @@ end
 Patient.first(2).each do |p|
   Appointment.create(patient: p, doctor: Doctor.first, recomendations: "Some text. alalal", closed: true)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
