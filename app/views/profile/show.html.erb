@@ -1,0 +1,29 @@
+<div class="flex flex-wrap justify-center pt-12 w-1/2 mx-auto">
+  <%= link_to "#" do %>
+    <div class="card">
+      <h2 class="text-center">Doctors</h2>
+    </div>
+  <% end %>
+
+  <%= link_to "#" do %>
+    <div class="card">
+      <h2 class="text-center">Recomendations</h2>
+    </div>
+  <% end %>
+
+  <% unless current_user.patient? %>
+    <%= link_to "#" do %>  
+      <div class="card">
+        <h2 class="text-center">Patients</h2>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <% if current_user.admin? %>
+    <%= link_to "#" do %>  
+      <div class="card">
+        <h2 class="text-center">Admin Page</h2>
+      </div>
+    <% end %>
+  <% end %>
+</div>

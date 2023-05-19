@@ -1,0 +1,40 @@
+<div class="modal">
+  <h2 class="text-4xl text-center">Sign up</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field mt-2 text-center">
+      <%= f.text_field :first_name, autocomplete: "first_name", placeholder: "First Name" %>
+    </div>
+
+    <div class="field mt-2 text-center">
+      <%= f.text_field :last_name, autocomplete: "last_name", placeholder: "Last Name" %>
+    </div>
+
+    <div class="field mt-2 text-center">
+      <%= f.email_field :email, autocomplete: "email", placeholder: "Email" %>
+    </div>
+
+    <div class="field mt-2 text-center">
+      <%= f.phone_field :phone, autocomplete: "phone", placeholder: "Phone" %>
+    </div>
+
+    <div class="field mt-2 text-center">
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+    </div>
+
+    <div class="field mt-2 text-center">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation" %>
+    </div>
+
+    <div class="actions flex justify-center">
+      <%= f.submit "Sign up", class: "text-xl blue-link-bg" %>
+    </div>
+  <% end %>
+
+  <div class="pt-8 flex justify-center flex-wrap">
+    <p class="w-full text-center">Or:</p>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
