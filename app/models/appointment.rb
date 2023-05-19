@@ -11,6 +11,6 @@ class Appointment < ApplicationRecord
   private
 
   def doctor_availability
-    errors.add(:base, 'doctor is not available') unless doctor.available?
+    errors.add(:base, 'doctor is not available') if doctor && !doctor.available?
   end
 end

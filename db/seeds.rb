@@ -1,36 +1,47 @@
 # frozen_string_literal: true
+Admin.create(
+  first_name: "Misha",
+  last_name: "Mar",
+  phone: '380686205333',
+  password: 'somepass',
+  password_confirmation: 'somepass'
+)
 
-category = Category.new(name: 'ABC')
+patient = Patient.create(
+  first_name: "Ivan",
+  last_name: "Ivanov",
+  phone: '380686205334',
+  password: 'somepass',
+  password_confirmation: 'somepass'
+)
 
-50.times do |n|
-  Doctor.create(
-    first_name: "Name #{n}",
-    last_name: "Surname #{n}",
-    phone: "38068620536#{n}",
-    password: 'somepass',
-    password_confirmation: 'somepass',
-    category:
-  )
-end
+categories_attr = [
+  { name: 'Pediatrician'},
+  { name: 'Dermatologist'},
+  { name: 'Neurologist'},
+  { name: 'Pulmonologist'},
+  { name: 'Ophthalmologist'}
+]
 
-10.times do |n|
-  Patient.create(
-    first_name: "Patient Name #{n}",
-    last_name: "Patient Surname #{n}",
-    phone: "38068620537#{n}",
-    password: 'somepass',
-    password_confirmation: 'somepass'
-  )
-end
+Category.insert_all categories_attr
 
-Patient.last(2).each do |p|
-  Appointment.create(patient: p, doctor: Doctor.first)
-end
+doctor1 = Doctor.create(
+  first_name: "Semen",
+  last_name: "Semenchenko",
+  phone: '380686205335',
+  password: 'somepass',
+  password_confirmation: 'somepass',
+  category: Category.last
+)
 
-Patient.first(2).each do |p|
-  Appointment.create(patient: p, doctor: Doctor.first, recomendations: 'Some text. alalal', closed: true)
-end
-if Rails.env.development?
-  AdminUser.create!(email: 'admin@example.com', password: 'password',
-                    password_confirmation: 'password')
-end
+doctor2 = Doctor.create(
+  first_name: "Vasyl",
+  last_name: "Vasylyuk",
+  phone: '380686205335',
+  password: 'somepass',
+  password_confirmation: 'somepass',
+  category: Category.last
+)
+
+Appointment.create(doctor: doctor1, patient: patient)
+Appointment.create(doctor: doctor2, patient: patient, recomendations: 'Some recomendation', closed: true)
