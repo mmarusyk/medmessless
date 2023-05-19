@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   }
 
   root 'profile#show'
+
+  resources :doctors, only: :index
 end
