@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 class AppointmentsController < ApplicationController
-  before_action :resource, only: %i(edit update)
+  before_action :resource, only: %i[edit update]
 
   def index
     authorize! :index, Appointment
 
     @pagy, @appointments = pagy(current_user.appointments.includes(:patient).order(closed: :asc))
   end
+
+  def edit; end
 
   def create
     authorize! :create, Appointment
@@ -16,12 +20,10 @@ class AppointmentsController < ApplicationController
       redirect_to appointments_path, notice: 'Appointment created successfully'
     else
       redirect_to doctors_path,
-        alert: "Failed to create appointment: #{appointment.errors.full_messages.join(" and ")}"
+                  alert: "Failed to create appointment: #{appointment.errors.full_messages.join(' and ')}"
     end
   end
 
-  def edit; end
-   
   def update
     authorize! :update, Appointment
 
@@ -35,7 +37,7 @@ class AppointmentsController < ApplicationController
   private
 
   def resource
-    @appointment ||= current_user.appointments.find(params[:id])
+    @resource ||= current_user.appointments.find(params[:id])
   end
 
   def create_params

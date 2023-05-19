@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Appointment < ApplicationRecord
   belongs_to :patient
   belongs_to :doctor
@@ -9,6 +11,6 @@ class Appointment < ApplicationRecord
   private
 
   def doctor_availability
-    errors.add(:base, "doctor is not available") unless doctor.available?
+    errors.add(:base, 'doctor is not available') unless doctor.available?
   end
 end

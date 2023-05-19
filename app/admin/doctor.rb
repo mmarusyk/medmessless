@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Doctor do
   permit_params :first_name, :last_name, :email, :category_id, :phone, :password, :password_confirmation
 
-    form do |f|
-      f.inputs do
+  form do |f|
+    f.inputs do
       f.input :first_name
       f.input :last_name
       f.input :email

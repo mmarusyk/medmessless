@@ -5,11 +5,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       t.string :first_name
       t.string :last_name
-      t.string :email, default: ""
+      t.string :email, default: ''
       t.string :type, null: false
-      t.string :phone, null: false, default: ""
+      t.string :phone, null: false, default: ''
       t.references :category
-      t.string :encrypted_password, null: false, default: ""
+      t.string :encrypted_password, null: false, default: ''
       t.datetime :remember_created_at
 
       t.timestamps null: false

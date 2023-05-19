@@ -1,13 +1,15 @@
-category = Category.new(name: "ABC")
+# frozen_string_literal: true
+
+category = Category.new(name: 'ABC')
 
 50.times do |n|
   Doctor.create(
     first_name: "Name #{n}",
     last_name: "Surname #{n}",
     phone: "38068620536#{n}",
-    password: "somepass",
-    password_confirmation: "somepass",
-    category: category
+    password: 'somepass',
+    password_confirmation: 'somepass',
+    category:
   )
 end
 
@@ -16,8 +18,8 @@ end
     first_name: "Patient Name #{n}",
     last_name: "Patient Surname #{n}",
     phone: "38068620537#{n}",
-    password: "somepass",
-    password_confirmation: "somepass",
+    password: 'somepass',
+    password_confirmation: 'somepass'
   )
 end
 
@@ -26,6 +28,9 @@ Patient.last(2).each do |p|
 end
 
 Patient.first(2).each do |p|
-  Appointment.create(patient: p, doctor: Doctor.first, recomendations: "Some text. alalal", closed: true)
+  Appointment.create(patient: p, doctor: Doctor.first, recomendations: 'Some text. alalal', closed: true)
 end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  AdminUser.create!(email: 'admin@example.com', password: 'password',
+                    password_confirmation: 'password')
+end

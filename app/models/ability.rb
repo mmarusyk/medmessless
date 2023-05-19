@@ -1,19 +1,17 @@
+# frozen_string_literal: true
+
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.admin?
-      can :manage, :all
-    end
+    can :manage, :all if user.admin?
 
-    if user.doctor?
-      can :manage, Appointment, doctor_id: user.id
-    end
+    can :manage, Appointment, doctor_id: user.id if user.doctor?
 
-    if user.patient?
-      can :read, Doctor
-      can :create, Appointment
-      can :read, Appointment
-    end
+    return unless user.patient?
+
+    can :read, Doctor
+    can :create, Appointment
+    can :read, Appointment
   end
 end
