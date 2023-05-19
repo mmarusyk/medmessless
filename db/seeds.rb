@@ -10,3 +10,21 @@ category = Category.new(name: "ABC")
     category: category
   )
 end
+
+10.times do |n|
+  Patient.create(
+    first_name: "Patient Name #{n}",
+    last_name: "Patient Surname #{n}",
+    phone: "38068620537#{n}",
+    password: "somepass",
+    password_confirmation: "somepass",
+  )
+end
+
+Patient.last(2).each do |p|
+  Appointment.create(patient: p, doctor: Doctor.first)
+end
+
+Patient.first(2).each do |p|
+  Appointment.create(patient: p, doctor: Doctor.first, recomendations: "Some text. alalal", closed: true)
+end

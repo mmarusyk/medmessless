@@ -1,20 +1,16 @@
 <div class="flex flex-wrap justify-center pt-12 w-1/2 mx-auto">
-  <%= link_to doctors_path do %>
-    <div class="card">
-      <h2 class="text-center">Doctors</h2>
-    </div>
-  <% end %>
-
-  <%= link_to "#" do %>
-    <div class="card">
-      <h2 class="text-center">Recomendations</h2>
-    </div>
-  <% end %>
-
-  <% unless current_user.patient? %>
-    <%= link_to "#" do %>  
+  <% if current_user.patient? %>
+    <%= link_to doctors_path do %>
       <div class="card">
-        <h2 class="text-center">Patients</h2>
+        <h2 class="text-center">Doctors</h2>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if current_user.doctor? || current_user.patient? %>
+    <%= link_to appointments_path do %>  
+      <div class="card">
+        <h2 class="text-center">Appointments</h2>
       </div>
     <% end %>
   <% end %>

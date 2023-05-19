@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   root 'profile#show'
 
   resources :doctors, only: :index
+
+  resources :appointments, only: %i(index new create edit update)
 end
