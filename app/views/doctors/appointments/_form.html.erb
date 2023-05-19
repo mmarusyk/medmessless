@@ -1,0 +1,4 @@
+  <%= form_with(model: Appointment.new, class: "black-link") do |form| %>
+    <%= form.hidden_field :doctor_id, value: doctor.id %>
+    <%= form.submit "Create an appointment", class: "black-link" %>
+  <% end %>

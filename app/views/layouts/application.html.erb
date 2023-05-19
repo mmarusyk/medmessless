@@ -12,8 +12,11 @@
 
   <body>
     <%= render 'shared/header' if current_user.present? %>
+
+    <%= render 'shared/flash_msg' %>
+
     <div class="container mx-auto">
-    <%= yield %>
+      <%= yield %>
     </div>
   </body>
 </html>

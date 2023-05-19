@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   resources :doctors, only: :index
 
-  resources :appointments, only: %i(index new create edit update)
+  resources :appointments, only: %i(index create edit update)
 end

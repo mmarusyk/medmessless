@@ -5,20 +5,22 @@ class AppointmentsController < ApplicationController
     @pagy, @appointments = pagy(current_user.appointments.includes(:patient).order(closed: :asc)) # Write qquery class
   end
 
-  def new
-    @appointment = Appointment.new
-  end
-
   def create
+    appointment = current_user.appointments.new(create_params)
 
+    if appointment.save
+      redirect_to appointments_path, notice: 'Appointment created successfully'
+    else
+      redirect_to doctors_path,
+        alert: "Failed to create appointment: #{appointment.errors.full_messages.join(" and ")}"
+    end
   end
 
-  def edit
-  end
+  def edit; end
    
   def update
     if resource.update(update_params)
-      redirect_to appointments_path
+      redirect_to appointments_path, notice: 'Appointment updated successfully.'
     else
       render :edit
     end
@@ -28,6 +30,10 @@ class AppointmentsController < ApplicationController
 
   def resource
     @appointment ||= current_user.appointments.find(params[:id])
+  end
+
+  def create_params
+    params.require(:appointment).permit(:doctor_id)
   end
 
   def update_params

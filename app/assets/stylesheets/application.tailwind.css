@@ -30,8 +30,12 @@ body {
   @apply py-1 px-10 mt-2 text-white bg-sky-700 hover:bg-sky-400;
 }
 
-.warning {
+.warning, .flash-alert {
   @apply p-2 mt-2 border rounded-sm border-rose-600 text-rose-950 bg-rose-400;
+}
+
+.flash-notice {
+  @apply p-2 mt-2 border rounded-sm border-green-700 text-green-900 bg-green-200;
 }
 
 .card {
