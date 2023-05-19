@@ -6,7 +6,7 @@ class AppointmentsController < ApplicationController
   def index
     authorize! :index, Appointment
 
-    @pagy, @appointments = pagy(current_user.appointments.includes(:patient).order(closed: :asc))
+    @pagy, @appointments = pagy(current_user.appointments.includes(:patient, :doctor).order(closed: :asc))
   end
 
   def edit; end

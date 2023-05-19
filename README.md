@@ -1,24 +1,85 @@
-# README
+# Forget about mess in your hospital
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Links
 
-Things you may want to cover:
+1. https://medmemssless.onrender.com/users/sign_in
+2. https://medmemssless.onrender.com/admin
 
-* Ruby version
+## Credentials
 
-* System dependencies
+1. Admin:
 
-* Configuration
+```
+Login: 380686205333
+Password: somepass
+```
 
-* Database creation
+2. Doctor:
 
-* Database initialization
+```
+Login: 380686205334
+Password: somepass
+```
 
-* How to run the test suite
+3. Patient:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+Login: 380686205335
+Password: somepass
+```
 
-* Deployment instructions
+## Requirements
 
-* ...
+Please ensure you are using Docker Compose V2
+
+Check your docker compose version with:
+
+```
+% docker compose version
+Docker Compose version v2.17.2
+```
+
+## Initial setup
+
+1. Install ruby 3.2.1
+2. Install nodejs 18.14.1
+3. Install yarn
+4. Setup .env file
+
+```
+cp .env.example .env
+```
+
+## Running the Rails app
+
+1. Run additional services (postgres)
+
+```
+docker compose up -d
+```
+
+2. Install additional packages
+
+```
+sudo apt install libpq-dev
+```
+
+3. Install gems and run server
+
+```
+bundle i
+bin/rails db:setup
+bin/dev
+```
+
+## Running the Rails console
+
+```
+bin/rails c
+```
+
+## Running specs
+
+```
+bundle exec rspec
+```

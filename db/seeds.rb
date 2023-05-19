@@ -37,10 +37,10 @@ doctor1 = Doctor.create(
 doctor2 = Doctor.create(
   first_name: "Vasyl",
   last_name: "Vasylyuk",
-  phone: '380686205335',
+  phone: '380686205336',
   password: 'somepass',
   password_confirmation: 'somepass',
-  category: Category.last
+  category: Category.first
 )
 
 Appointment.create(doctor: doctor1, patient: patient)
