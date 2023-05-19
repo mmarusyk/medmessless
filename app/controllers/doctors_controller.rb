@@ -5,6 +5,6 @@ class DoctorsController < ApplicationController
     authorize! :index, Doctor
 
     @categories = Category.all
-    @pagy, @doctors = pagy(Doctor.where(category_id: params[:category_id].presence || @categories)) # Write query class
+    @pagy, @doctors = pagy DoctorQuery.new(params).collection
   end
 end
