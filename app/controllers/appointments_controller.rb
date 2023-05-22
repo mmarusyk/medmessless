@@ -9,7 +9,9 @@ class AppointmentsController < ApplicationController
     @pagy, @appointments = pagy(current_user.appointments.includes(:patient, :doctor).order(closed: :asc))
   end
 
-  def edit; end
+  def edit
+    @appointment = resource
+  end
 
   def create
     authorize! :create, Appointment
@@ -27,7 +29,7 @@ class AppointmentsController < ApplicationController
   def update
     authorize! :update, Appointment
 
-    if resource.update(update_params)
+    if @resource.update(update_params)
       redirect_to appointments_path, notice: 'Appointment updated successfully.'
     else
       render :edit
