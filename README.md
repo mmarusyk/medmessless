@@ -14,14 +14,14 @@ Login: 380686205333
 Password: somepass
 ```
 
-2. Doctor:
+2. Patient:
 
 ```
 Login: 380686205334
 Password: somepass
 ```
 
-3. Patient:
+3. Doctor:
 
 ```
 Login: 380686205335

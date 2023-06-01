@@ -33,5 +33,22 @@ RSpec.describe AppointmentsController, type: :request do
         expect(flash[:alert]).to eq('Failed to create appointment: Doctor must exist')
       end
     end
+
+    context 'with already created apointment' do
+      let!(:doctor) { create(:doctor) }
+
+      before do
+        create(:appointment, doctor:, patient:)
+      end
+
+      it 'does not create an appointment' do
+        expect do
+          post appointments_path, params: { appointment: { doctor_id: doctor.id } }
+        end.not_to change(Appointment, :count)
+
+        expect(response).to redirect_to(doctors_path)
+        expect(flash[:alert]).to eq('Failed to create appointment: Appointment was already created with the doctor')
+      end
+    end
   end
 end

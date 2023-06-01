@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AppointmentsController < ApplicationController
-  before_action :resource, only: %i[edit update]
+  before_action :set_appointment, only: %i[edit update]
 
   def index
     authorize! :index, Appointment
@@ -9,9 +9,7 @@ class AppointmentsController < ApplicationController
     @pagy, @appointments = pagy(current_user.appointments.includes(:patient, :doctor).order(closed: :asc))
   end
 
-  def edit
-    @appointment = resource
-  end
+  def edit; end
 
   def create
     authorize! :create, Appointment
@@ -29,7 +27,7 @@ class AppointmentsController < ApplicationController
   def update
     authorize! :update, Appointment
 
-    if @resource.update(update_params)
+    if @appointment.update(update_params)
       redirect_to appointments_path, notice: 'Appointment updated successfully.'
     else
       render :edit
@@ -38,8 +36,8 @@ class AppointmentsController < ApplicationController
 
   private
 
-  def resource
-    @resource ||= current_user.appointments.find(params[:id])
+  def set_appointment
+    @appointment = current_user.appointments.find(params[:id])
   end
 
   def create_params
