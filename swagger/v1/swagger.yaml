@@ -1,0 +1,47 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/doctors":
+    get:
+      summary: Retrieves a list of doctors
+      tags:
+      - Doctors
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+              - id: 260
+                category: Real-Estate
+                email: caryl_harber@conn.example
+                first_name: Daren
+                last_name: Welch
+              - id: 261
+                category: Legal
+                email: jake@stanton.example
+                first_name: Angelica
+                last_name: Stamm
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                    category:
+                      type: string
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

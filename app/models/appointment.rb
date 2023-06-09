@@ -5,7 +5,7 @@ class Appointment < ApplicationRecord
   belongs_to :doctor
 
   validate :doctor_availability
-  validate :unique_per_patient
+  validate :unique_per_patient, if: :new_record?
 
   scope :active, -> { where(closed: false) }
   scope :for_patient_and_doctor, ->(patient, doctor) { where(patient:, doctor:) }
